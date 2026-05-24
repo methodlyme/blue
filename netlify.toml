@@ -1,6 +1,42 @@
 [build]
   command = ""
   publish = "."
+  ignore = "git diff --quiet HEAD^ HEAD -- . ':!*.md' ':!.gitignore'"
 
 [functions]
   directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Security & caching headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache static assets for 1 year
+[[headers]]
+  for = "/favicon.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Don't cache HTML
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Redirect www to apex
+[[redirects]]
+  from = "https://www.methodly.me/*"
+  to = "https://methodly.me/:splat"
+  status = 301
+  force = true
