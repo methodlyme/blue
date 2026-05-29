@@ -1,354 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms & Conditions — Methodly</title>
-<meta name="description" content="Terms and conditions governing the use of Methodly's website and services.">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy:   #0e1628;
-    --navy2:  #162038;
-    --navy3:  #1e2d4a;
-    --gold:   #c9a84c;
-    --gold2:  #e8c87a;
-    --cream:  #faf7f0;
-    --white:  #ffffff;
-    --muted:  #8899bb;
-    --border: rgba(201,168,76,0.2);
-    --r: 2px;
-  }
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Outfit', sans-serif;
-    background: var(--navy);
-    color: var(--cream);
-    line-height: 1.7;
-  }
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px 48px;
-    background: rgba(14,22,40,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--white);
-    text-decoration: none;
-  }
-  .logo span { color: var(--gold); }
-  .nav-back {
-    font-family: 'Courier Prime', monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-decoration: none;
-    border: 1px solid var(--gold);
-    padding: 10px 22px;
-    transition: all 0.2s;
-  }
-  .nav-back:hover { background: rgba(201,168,76,0.1); }
-
-  main {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 80px 48px 100px;
-  }
-  .page-header {
-    margin-bottom: 64px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--border);
-  }
-  .page-eyebrow {
-    font-family: 'Courier Prime', monospace;
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-    display: block;
-  }
-  h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 300;
-    line-height: 1.05;
-    margin-bottom: 16px;
-  }
-  h1 em { font-style: italic; color: var(--gold2); }
-  .effective-date {
-    font-family: 'Courier Prime', monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .intro {
-    font-size: 17px;
-    color: var(--cream);
-    font-weight: 300;
-    margin-bottom: 24px;
-    line-height: 1.7;
-  }
-  .intro:last-of-type { margin-bottom: 0; }
-  h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 600;
-    margin: 56px 0 16px;
-    color: var(--cream);
-    position: relative;
-    padding-left: 24px;
-  }
-  h2::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 12px;
-    width: 12px; height: 12px;
-    background: var(--gold);
-    border-radius: 50%;
-    box-shadow: 0 0 12px rgba(201,168,76,0.4);
-  }
-  p {
-    font-size: 15px;
-    color: var(--cream);
-    margin-bottom: 14px;
-    font-weight: 300;
-  }
-  p strong { color: var(--gold2); font-weight: 600; }
-  ul {
-    list-style: none;
-    margin: 8px 0 16px;
-    padding-left: 0;
-  }
-  li {
-    position: relative;
-    padding: 6px 0 6px 22px;
-    font-size: 15px;
-    color: var(--cream);
-    font-weight: 300;
-    border-bottom: 1px dotted rgba(201,168,76,0.1);
-  }
-  li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-    font-weight: 700;
-  }
-  a {
-    color: var(--gold2);
-    text-decoration: none;
-    border-bottom: 1px solid var(--gold);
-    transition: color 0.2s;
-  }
-  a:hover { color: var(--gold); }
-
-  .contact-block {
-    margin-top: 48px;
-    padding: 28px 32px;
-    background: var(--navy2);
-    border-left: 4px solid var(--gold);
-  }
-  .contact-block h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: var(--cream);
-  }
-  .contact-block p { font-size: 14px; margin-bottom: 6px; }
-  .contact-label {
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-right: 8px;
-  }
-
-  footer {
-    background: var(--navy2);
-    border-top: 1px solid var(--border);
-    padding: 40px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .foot-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--white);
-    text-decoration: none;
-    border: none;
-  }
-  .foot-logo span { color: var(--gold); }
-  .foot-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .foot-links li { border: none; padding: 0; }
-  .foot-links li::before { display: none; }
-  .foot-links a {
-    font-size: 12px;
-    letter-spacing: 1px;
-    color: var(--muted);
-    border: none;
-  }
-  .foot-links a:hover { color: var(--gold2); }
-  .foot-copy {
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-
-  @media (max-width: 700px) {
-    nav { padding: 16px 24px; }
-    main { padding: 48px 24px 64px; }
-    h1 { font-size: 36px; }
-    h2 { font-size: 22px; padding-left: 20px; }
-    h2::before { width: 10px; height: 10px; top: 9px; }
-    footer { padding: 32px 24px; flex-direction: column; text-align: center; }
-    .foot-links { flex-wrap: wrap; justify-content: center; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — Methodly</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://methodly.me/terms-of-service.html">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0f0f0f; color: #e0e0e0; line-height: 1.7; }
+    .wrap { max-width: 780px; margin: 0 auto; padding: 48px 24px 80px; }
+    .badge { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+    h1 { font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .effective { font-size: 0.85rem; color: #666; margin-bottom: 40px; }
+    h2 { font-size: 1.15rem; font-weight: 600; color: #fff; margin: 36px 0 12px; }
+    p { margin-bottom: 14px; color: #c8c8c8; }
+    ul { margin: 8px 0 14px 20px; color: #c8c8c8; }
+    li { margin-bottom: 6px; }
+    a { color: #e8d5a3; }
+    .highlight-box { background: rgba(232,213,163,0.08); border: 1px solid rgba(232,213,163,0.2); border-radius: 8px; padding: 16px 20px; margin: 20px 0; }
+    .back { display: inline-block; margin-bottom: 32px; color: #e8d5a3; text-decoration: none; font-size: 0.9rem; }
+    footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid #222; color: #555; font-size: 0.82rem; }
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <a href="/" class="back">← Back to Methodly</a>
+    <div class="badge">Legal · Methodly</div>
+    <h1>Terms of Service</h1>
+    <p class="effective">Effective Date: May 29, 2026 &amp;nbsp;|&amp;nbsp; Last Updated: May 29, 2026</p>
 
-<nav>
-  <a href="index.html" class="logo">Method<span>ly</span></a>
-  <a href="index.html" class="nav-back">← Back to Site</a>
-</nav>
+    <p>These Terms of Service ("Terms") govern your use of the Methodly website at <a href="https://methodly.me">https://methodly.me</a> and related services provided by Methodly ("we," "our," or "us"). By using our website or services, you agree to these Terms.</p>
 
-<main>
-  <div class="page-header">
-    <span class="page-eyebrow">Legal · Methodly</span>
-    <h1>Terms & <em>Conditions</em></h1>
-    <div class="effective-date">Effective Date: May 11, 2026</div>
+    <h2>1. Use of Website and Services</h2>
+    <p>Methodly provides business automation consulting, lead follow-up, CRM workflow, and related services. By accessing our website or submitting an inquiry, you agree to:</p>
+    <ul>
+      <li>Provide accurate and complete information</li>
+      <li>Use the website and services only for lawful purposes</li>
+      <li>Not attempt to gain unauthorized access to any system, data, or network</li>
+      <li>Not use services to send spam, abusive communications, or violate any applicable law</li>
+      <li>Comply with all applicable federal, state, and local laws, including telecommunications laws</li>
+    </ul>
+
+    <h2>2. No Guarantee of Results</h2>
+    <p>While Methodly strives to deliver value through automation and process improvements, we make no guarantee of specific outcomes, including:</p>
+    <ul>
+      <li>Specific revenue increases or lead volumes</li>
+      <li>Specific conversion rates or business growth outcomes</li>
+      <li>Uninterrupted availability of third-party platforms or integrations</li>
+    </ul>
+    <p>Results depend on many factors outside our control, including your business model, market conditions, and your team's responsiveness. Testimonials and metrics shown on our website represent individual client results and are not guarantees of future performance.</p>
+
+    <h2>3. Messaging Terms (SMS &amp; Email)</h2>
+
+    <div class="highlight-box">
+      <p><strong>Consent is not required to purchase or receive our services.</strong> You are not required to opt in to SMS or marketing email communications to receive a free evaluation, become a client, or engage Methodly's services.</p>
+    </div>
+
+    <p><strong>SMS Text Messages</strong></p>
+    <ul>
+      <li>We only send text messages to users who have explicitly checked the SMS consent checkbox on our contact form.</li>
+      <li>Methodly is the sole sender of messages. We do not share your number with affiliates, partners, or third parties for marketing purposes.</li>
+      <li>Message frequency varies based on your inquiry and scheduling needs.</li>
+      <li>Standard message and data rates may apply (carrier charges).</li>
+      <li>Our first text message to you will include: "Methodly: Thanks for reaching out. Reply STOP to opt out, HELP for help. Msg/data rates may apply."</li>
+    </ul>
+
+    <p><strong>To Stop Receiving Text Messages (STOP)</strong></p>
+    <p>Reply <strong>STOP</strong> to any text message from Methodly at any time. Upon receipt of STOP, we will immediately cease sending you text messages and record your opt-out in our system. You will not receive further text messages unless you re-opt in.</p>
+
+    <p><strong>To Get Help (HELP)</strong></p>
+    <p>Reply <strong>HELP</strong> to any text message from Methodly. We will respond: "Methodly: You can reach us at automate@methodly.me. Reply STOP to opt out. Msg/data rates may apply."</p>
+
+    <p><strong>Marketing Emails</strong></p>
+    <ul>
+      <li>We only send marketing emails to users who have explicitly checked the email consent checkbox on our contact form.</li>
+      <li>You may unsubscribe at any time using the unsubscribe link in any marketing email, or by contacting us at <a href="mailto:automate@methodly.me">automate@methodly.me</a>.</li>
+      <li>Transactional emails (e.g., inquiry confirmations) may be sent regardless of marketing email consent.</li>
+    </ul>
+
+    <h2>4. Client Responsibilities</h2>
+    <p>Clients of Methodly agree to:</p>
+    <ul>
+      <li>Provide accurate business information and access to relevant systems</li>
+      <li>Respond to communications in a timely manner</li>
+      <li>Use all automations and workflows in compliance with applicable law</li>
+      <li>Ensure they have appropriate consents and rights before providing us with their customers' contact information</li>
+    </ul>
+
+    <h2>5. Payments</h2>
+    <p>Fees, retainers, and service charges are agreed upon separately in written service agreements. Invoices are due per stated payment terms. Late payment may result in service suspension.</p>
+
+    <h2>6. Intellectual Property</h2>
+    <p>All Methodly branding, website content, systems, templates, and workflows created by Methodly remain our property unless otherwise agreed in writing. Clients retain ownership of their business data, customer lists, and content.</p>
+
+    <h2>7. Third-Party Platforms</h2>
+    <p>We configure and use third-party platforms on your behalf, including HubSpot, Twilio, Zapier, Netlify, Cloudflare, and others. We are not responsible for outages, pricing changes, policy changes, or discontinuation of third-party services.</p>
+
+    <h2>8. Limitation of Liability</h2>
+    <p>To the fullest extent permitted by law, Methodly shall not be liable for indirect, incidental, special, or consequential damages, including lost profits, business interruption, or data loss. Total liability shall not exceed the amounts paid to Methodly for services in the 30 days preceding the claim.</p>
+
+    <h2>9. Indemnification</h2>
+    <p>You agree to indemnify and hold harmless Methodly and its owner from claims, losses, or expenses (including attorney fees) arising from your use of our services, your violation of these Terms, or your violation of any third-party rights or applicable laws.</p>
+
+    <h2>10. Termination</h2>
+    <p>Either party may terminate services per the applicable service agreement. Methodly reserves the right to terminate services immediately for misuse, nonpayment, or illegal activity without refund of prepaid fees.</p>
+
+    <h2>11. Governing Law &amp; Dispute Resolution</h2>
+    <p>These Terms are governed by the laws of the State of Arizona, without regard to conflict of law principles. Any disputes shall be resolved in courts of competent jurisdiction located in Maricopa County, Arizona.</p>
+
+    <h2>12. Changes to Terms</h2>
+    <p>We may update these Terms at any time. The updated version will be posted with a revised effective date. Continued use of our services after posting constitutes acceptance of the revised Terms. We recommend checking this page periodically.</p>
+
+    <h2>13. Contact</h2>
+    <ul>
+      <li><strong>Methodly</strong></li>
+      <li>Email: <a href="mailto:automate@methodly.me">automate@methodly.me</a></li>
+      <li>Website: <a href="https://methodly.me">https://methodly.me</a></li>
+      <li>Location: Phoenix, AZ</li>
+    </ul>
+
+    <footer>
+      <a href="/" style="color:#e8d5a3;">Methodly</a> &amp;nbsp;·&amp;nbsp;
+      <a href="/privacy-policy.html" style="color:#e8d5a3;">Privacy Policy</a> &amp;nbsp;·&amp;nbsp;
+      <a href="/terms-of-service.html" style="color:#e8d5a3;">Terms of Service</a> &amp;nbsp;·&amp;nbsp;
+      © 2026 Methodly · Phoenix, AZ
+    </footer>
   </div>
-
-  <p class="intro">These Terms & Conditions ("Terms") govern your use of the Methodly website and services.</p>
-  <p class="intro">By using our website or services, you agree to these Terms.</p>
-
-  <h2>1. Services</h2>
-  <p>Methodly provides lead follow-up, lead conversion, business automation, CRM workflow, and related consulting services.</p>
-  <p>We reserve the right to modify or discontinue services at any time.</p>
-
-  <h2>2. No Guarantees</h2>
-  <p>While Methodly aims to improve lead response and conversion outcomes, we do not guarantee:</p>
-  <ul>
-    <li>Specific revenue increases</li>
-    <li>Specific lead volumes</li>
-    <li>Specific conversion rates</li>
-    <li>Business growth outcomes</li>
-  </ul>
-  <p>Results depend on multiple factors outside our control.</p>
-
-  <h2>3. Client Responsibilities</h2>
-  <p>Clients agree to:</p>
-  <ul>
-    <li>Provide accurate information</li>
-    <li>Maintain lawful business operations</li>
-    <li>Respond to leads and customers appropriately</li>
-    <li>Provide required access to systems when applicable</li>
-    <li>Use services in compliance with applicable laws</li>
-  </ul>
-
-  <h2>4. Payments</h2>
-  <p>Fees, retainers, setup costs, and recurring service charges are agreed upon separately between Methodly and the client.</p>
-  <p>Invoices are due according to the stated payment terms.</p>
-  <p>Late or unpaid balances may result in suspension of services.</p>
-
-  <h2>5. Intellectual Property</h2>
-  <p>All Methodly systems, workflows, templates, branding, website content, and related materials remain the property of Methodly unless otherwise agreed in writing.</p>
-  <p>Clients retain ownership of their business data and customer relationships.</p>
-
-  <h2>6. Acceptable Use</h2>
-  <p>Users may not:</p>
-  <ul>
-    <li>Use services for unlawful activity</li>
-    <li>Attempt unauthorized access to systems</li>
-    <li>Send spam or abusive communications</li>
-    <li>Violate applicable telecommunications or marketing laws</li>
-  </ul>
-
-  <h2>7. Limitation of Liability</h2>
-  <p>To the fullest extent permitted by law, Methodly shall not be liable for:</p>
-  <ul>
-    <li>Indirect or consequential damages</li>
-    <li>Lost profits</li>
-    <li>Business interruption</li>
-    <li>Data loss</li>
-    <li>Third-party service outages</li>
-  </ul>
-  <p><strong>Total liability shall not exceed the amount paid to Methodly for services during the previous 30 days.</strong></p>
-
-  <h2>8. Third-Party Platforms</h2>
-  <p>Methodly may use third-party platforms including but not limited to:</p>
-  <ul>
-    <li>HubSpot</li>
-    <li>Twilio</li>
-    <li>Zoho CRM</li>
-    <li>OpenPhone</li>
-    <li>Stripe</li>
-    <li>Netlify</li>
-    <li>Cloudflare</li>
-  </ul>
-  <p>We are not responsible for outages, changes, or failures of third-party services.</p>
-
-  <h2>9. Termination</h2>
-  <p>Either party may terminate services according to the applicable service agreement.</p>
-  <p>Methodly reserves the right to suspend or terminate services for misuse, nonpayment, or unlawful activity.</p>
-
-  <h2>10. Governing Law</h2>
-  <p>These Terms shall be governed by the laws of the <strong>State of Arizona</strong>, without regard to conflict of law principles.</p>
-
-  <h2>11. Changes to Terms</h2>
-  <p>We may update these Terms at any time. Continued use of services after updates constitutes acceptance of revised Terms.</p>
-
-  <h2>12. Contact Information</h2>
-  <div class="contact-block">
-    <h3>Methodly</h3>
-    <p><span class="contact-label">Email</span> <a href="mailto:results@methodly.me">results@methodly.me</a></p>
-    <p><span class="contact-label">Website</span> <a href="https://methodly.me/">https://methodly.me/</a></p>
-  </div>
-</main>
-
-<footer>
-  <a href="index.html" class="foot-logo">Method<span>ly</span></a>
-  <ul class="foot-links">
-    <li><a href="index.html#services">Services</a></li>
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-    <li><a href="privacy.html">Privacy</a></li>
-    <li><a href="terms.html">Terms</a></li>
-  </ul>
-  <span class="foot-copy">© 2026 Methodly · Phoenix, AZ</span>
-</footer>
-
-
-<!-- Start of HubSpot Embed Code -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/246124895.js"></script>
-<!-- End of HubSpot Embed Code -->
 </body>
 </html>
