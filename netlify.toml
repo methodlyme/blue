@@ -40,3 +40,25 @@
   to = "https://methodly.me/:splat"
   status = 301
   force = true
+
+# ═══ COMPLIANCE REDIRECTS ═══
+# Redirect old /privacy and /terms URLs to new .html pages
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy-policy.html"
+  status = 301
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms-of-service.html"
+  status = 301
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy-policy.html"
+  status = 301
+
+[[redirects]]
+  from = "/terms.html"
+  to = "/terms-of-service.html"
+  status = 301
