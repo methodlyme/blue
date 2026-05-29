@@ -1130,6 +1130,82 @@
     body { cursor: auto; }
     .cursor, .cursor-ring { display: none; }
   }
+
+  /* ═══ COMPLIANCE CONSENT BLOCKS ═══ */
+  .consent-block {
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+  }
+  .consent-label {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    cursor: pointer;
+    line-height: 1.5;
+  }
+  .consent-label input[type="checkbox"] {
+    margin-top: 3px;
+    min-width: 16px;
+    height: 16px;
+    accent-color: var(--accent, #e8d5a3);
+    cursor: pointer;
+  }
+  .consent-text {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.55;
+  }
+  .consent-text a {
+    color: var(--accent, #e8d5a3);
+    text-decoration: underline;
+  }
+  .consent-text a:hover { opacity: 0.8; }
+  .phone-note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    margin: 4px 0 0 0;
+    line-height: 1.45;
+  }
+  .phone-field-wrap { display: flex; flex-direction: column; }
+  .contact-pref-wrap { margin: 8px 0; }
+  .field-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 6px;
+  }
+  .radio-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-right: 16px;
+    cursor: pointer;
+    font-size: 0.88rem;
+  }
+  .contact-fallback {
+    margin-top: 24px;
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.88rem;
+  }
+  .contact-link {
+    display: inline-block;
+    margin: 6px 12px;
+    color: var(--accent, #e8d5a3);
+    text-decoration: none;
+  }
+  .contact-link:hover { opacity: 0.8; }
+  .cta-success {
+    padding: 12px;
+    background: rgba(100,200,100,0.15);
+    border: 1px solid rgba(100,200,100,0.3);
+    border-radius: 6px;
+    color: #90ee90;
+    margin-top: 12px;
+    font-size: 0.9rem;
+  }
 </style>
 </head>
 <body>
@@ -1470,43 +1546,54 @@
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section class="cta-section" id="contact">
-  <div class="container">
-    <span class="section-label">Get Started</span>
-    <h2 class="section-title">Ready to get your<br><em>time back?</em></h2>
-    <p class="section-sub">Book a free 45-minute evaluation. No pitch, no pressure, just a clear picture of what's possible for your business.</p>
-    <form class="cta-form" id="leadForm" onsubmit="return submitLead(event)">
-      <input type="text" name="name" class="cta-input" placeholder="Your name" required>
-      <div class="cta-row">
-        <input type="email" name="email" class="cta-input" placeholder="Email address" required>
-        <input type="tel" name="phone" class="cta-input" placeholder="Phone number" required>
-      </div>
-      <div>
-        <span class="cta-pref-label">Preferred contact method</span>
-        <div class="cta-radio-group">
-          <div class="cta-radio">
-            <input type="radio" id="prefText" name="contact_pref" value="text" checked>
-            <label for="prefText">💬 Text</label>
-          </div>
-          <div class="cta-radio">
-            <input type="radio" id="prefEmail" name="contact_pref" value="email">
-            <label for="prefEmail">📧 Email</label>
-          </div>
-          <div class="cta-radio">
-            <input type="radio" id="prefPhone" name="contact_pref" value="phone">
-            <label for="prefPhone">📞 Phone</label>
-          </div>
-        </div>
-      </div>
-      <textarea name="message" class="cta-textarea" placeholder="What's the #1 task eating up your time right now? (optional)"></textarea>
-      <button type="submit" class="cta-submit" id="submitBtn">Book My Free Evaluation →</button>
-      <p class="cta-legal">By submitting, you agree to our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>. We'll never share your information.</p>
-      <div id="formStatus"></div>
-    </form>
-    <div class="cta-contact-info">
-      <div class="cta-contact-item">📧 <a href="mailto:results@methodly.me">results@methodly.me</a></div>
-      <div class="cta-contact-item">📞 <a href="tel:+16029056166">(602) 905-6166</a></div>
+<section id="contact">
+  <div class="section-label">Get Started</div>
+  <h2>Ready to get your<br><span class="highlight">time back?</span></h2>
+  <p>Book a free 45-minute evaluation. No pitch, no pressure, just a clear picture of what's possible for your business.</p>
+
+  <form class="cta-form" id="leadForm" onsubmit="return submitLead(event)">
+    <input type="text" name="fullName" id="fullName" placeholder="Your full name *" required autocomplete="name">
+    <input type="text" name="businessName" id="businessName" placeholder="Business name *" required autocomplete="organization">
+    <input type="email" name="email" id="email" placeholder="Email address *" required autocomplete="email">
+
+    <div class="phone-field-wrap">
+      <input type="tel" name="phone" id="phone" placeholder="Phone number (optional)" autocomplete="tel">
+      <p class="phone-note">Optional. If provided, we may use your number for scheduling confirmations and inquiry follow-up only. We will only send text messages if you explicitly consent below.</p>
     </div>
+
+    <div class="contact-pref-wrap">
+      <p class="field-label">Preferred contact method</p>
+      <label class="radio-label"><input type="radio" name="contact_pref" value="text"> 💬 Text</label>
+      <label class="radio-label"><input type="radio" name="contact_pref" value="email" checked> 📧 Email</label>
+      <label class="radio-label"><input type="radio" name="contact_pref" value="phone"> 📞 Phone</label>
+    </div>
+
+    <textarea name="message" id="message" placeholder="What's the #1 task eating up your time right now? (optional)"></textarea>
+
+    <!-- COMPLIANCE: SMS CONSENT — must remain unchecked by default -->
+    <div class="consent-block" id="smsConsentBlock">
+      <label class="consent-label">
+        <input type="checkbox" id="smsConsent" name="smsConsent" value="true">
+        <span class="consent-text">I agree to receive text messages from Methodly about my inquiry, scheduling, and follow-up. Message frequency varies. Message and data rates may apply. Reply STOP to opt out and HELP for help. Consent is not a condition of purchase. View our <a href="/privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="/terms-of-service.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>.</span>
+      </label>
+    </div>
+
+    <!-- COMPLIANCE: EMAIL CONSENT — must remain unchecked by default -->
+    <div class="consent-block" id="emailConsentBlock">
+      <label class="consent-label">
+        <input type="checkbox" id="emailConsent" name="emailConsent" value="true">
+        <span class="consent-text">I agree to receive emails from Methodly about my inquiry, scheduling, services, and follow-up. I can unsubscribe at any time.</span>
+      </label>
+    </div>
+
+    <button type="submit" class="btn-primary" id="submitBtn">Book My Free Evaluation →</button>
+    <div id="formStatus"></div>
+  </form>
+
+  <div class="contact-fallback">
+    <p>Prefer to reach out directly?</p>
+    <a href="mailto:results@methodly.me" class="contact-link">📧 results@methodly.me</a>
+    <a href="tel:+16029056166" class="contact-link">📞 (602) 905-6166</a>
   </div>
 </section>
 
@@ -1518,118 +1605,96 @@
     <li><a href="#how">How It Works</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="privacy.html">Privacy</a></li>
-    <li><a href="terms.html">Terms</a></li>
+    <li><a href="/privacy-policy.html">Privacy</a></li>
+    <li><a href="/terms-of-service.html">Terms</a></li>
   </ul>
   <span class="foot-copy">© 2026 Methodly · Phoenix, AZ</span>
 </footer>
 
 <script>
-  // ── Custom cursor ──
-  const cursor = document.getElementById('cursor');
-  const ring   = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
-  function animRing() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); }
-  animRing();
-  document.querySelectorAll('a,button,.service-card,.tool-pill').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; ring.style.width='60px'; ring.style.height='60px'; });
-    el.addEventListener('mouseleave', () => { cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='36px'; ring.style.height='36px'; });
-  });
+  // ═══════════════════════════════════════════════════
+  //  COMPLIANCE-GRADE FORM SUBMISSION HANDLER v2.0
+  //  TCPA / CAN-SPAM compliant consent capture
+  //  Updated: 2026-05-29
+  // ═══════════════════════════════════════════════════
 
-  // ── Hero grid animation ──
-  const grid = document.getElementById('heroGrid');
-  const COLS=6, ROWS=8, TOTAL=COLS*ROWS;
-  for(let i=0;i<TOTAL;i++){
-    const c=document.createElement('div');
-    c.className='grid-cell';
-    grid.appendChild(c);
-  }
-  const cells=[...grid.children];
-  function lightGrid(){
-    cells.forEach(c=>c.classList.remove('lit','bright'));
-    const n=Math.floor(Math.random()*8)+4;
-    for(let i=0;i<n;i++){
-      const idx=Math.floor(Math.random()*TOTAL);
-      cells[idx].classList.add(Math.random()>0.4?'lit':'bright');
-    }
-    setTimeout(lightGrid, 600+Math.random()*400);
-  }
-  lightGrid();
+  // Exact consent language shown at submission time (immutable — for audit trail)
+  const SMS_CONSENT_LANGUAGE = "I agree to receive text messages from Methodly about my inquiry, scheduling, and follow-up. Message frequency varies. Message and data rates may apply. Reply STOP to opt out and HELP for help. Consent is not a condition of purchase. View our Privacy Policy and Terms of Service.";
+  const EMAIL_CONSENT_LANGUAGE = "I agree to receive emails from Methodly about my inquiry, scheduling, services, and follow-up. I can unsubscribe at any time.";
 
-  // ── Scroll reveal for problem items ──
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach((e,i) => {
-      if(e.isIntersecting){
-        setTimeout(()=>e.target.classList.add('visible'), i*120);
-        obs.unobserve(e.target);
-      }
-    });
-  }, {threshold:0.15});
-  document.querySelectorAll('.problem-item').forEach(el=>obs.observe(el));
-
-  // ── Form submission ──
-  // Posts the form data to a Zapier webhook (replace ZAPIER_WEBHOOK_URL with your actual webhook),
-  // OR falls back to opening the user's email client if no webhook is configured.
-  // Set window.ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/...' to enable webhook posting.
   window.submitLead = function(event) {
     event.preventDefault();
     const form = event.target;
     const btn = document.getElementById('submitBtn');
     const status = document.getElementById('formStatus');
-    const data = {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      phone: form.phone.value.trim(),
-      contact_pref: form.contact_pref.value,
-      message: form.message.value.trim(),
-      submitted_at: new Date().toISOString(),
-      source: 'methodly.me',
-      version: window.SITE_VERSION || 'unknown'
+
+    // Collect all fields
+    const fullName = (document.getElementById('fullName')?.value || '').trim();
+    const businessName = (document.getElementById('businessName')?.value || '').trim();
+    const email = (document.getElementById('email')?.value || '').trim();
+    const phone = (document.getElementById('phone')?.value || '').trim();
+    const smsConsent = document.getElementById('smsConsent')?.checked === true;
+    const emailConsent = document.getElementById('emailConsent')?.checked === true;
+    const contactPref = form.querySelector('input[name="contact_pref"]:checked')?.value || '';
+    const message = (document.getElementById('message')?.value || '').trim();
+
+    // Build compliance proof record — stored with every submission
+    const payload = {
+      fullName,
+      businessName,
+      email,
+      phone,
+      smsConsent,
+      emailConsent,
+      contactPref,
+      message,
+      timestamp: new Date().toISOString(),
+      pageURL: window.location.href,
+      userAgent: navigator.userAgent,
+      // Exact language shown — critical for TCPA audit trail
+      smsConsentLanguageShown: SMS_CONSENT_LANGUAGE,
+      emailConsentLanguageShown: EMAIL_CONSENT_LANGUAGE,
+      // Compliance flags
+      autoresponderRules: {
+        sendSMS: smsConsent,
+        sendMarketingEmail: emailConsent,
+        sendTransactionalEmail: true
+      }
     };
 
     btn.disabled = true;
-    btn.textContent = 'Sending...';
+    btn.textContent = 'Submitting...';
     status.innerHTML = '';
 
-    const webhookUrl = window.ZAPIER_WEBHOOK_URL;
-
-    if (webhookUrl) {
-      // Send to Zapier
-      fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-      .then(r => {
-        if (!r.ok) throw new Error('Network response was not ok');
-        status.innerHTML = `<div class="cta-success">✓ Got it, ${data.name}! I'll reach out via ${data.contact_pref} within 24 hours.</div>`;
+    fetch(window.ZAPIER_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(res => {
+      if (res.ok || res.type === 'opaque') {
+        status.innerHTML = '<div class="cta-success">✓ Request received! We\'ll be in touch shortly.</div>';
         form.reset();
-        btn.textContent = 'Sent ✓';
-      })
-      .catch(err => {
-        console.error(err);
-        status.innerHTML = `<div class="cta-error">Hmm, something went wrong. Please email me directly at results@methodly.me.</div>`;
-        btn.disabled = false;
-        btn.textContent = 'Book My Free Evaluation →';
-      });
-    } else {
-      // Fallback: open mail client with pre-filled email
+      } else {
+        throw new Error('HTTP ' + res.status);
+      }
+    })
+    .catch(err => {
+      console.error('Webhook error:', err);
       const subject = encodeURIComponent('Free Evaluation Request: Methodly');
       const body = encodeURIComponent(
-        `Hi Angela,\n\nI'd like to book a free evaluation for my business.\n\n` +
-        `Name: ${data.name}\n` +
-        `Email: ${data.email}\n` +
-        `Phone: ${data.phone}\n` +
-        `Preferred contact: ${data.contact_pref}\n\n` +
-        `About my business / iggest time drain:\n${data.message || '(not specified)'}\n\n` +
-        `Looking forward to chatting!\n`
+        'Hi Angela,\n\nI\'d like to book a free evaluation for my business.\n\n' +
+        'Name: ' + fullName + '\nBusiness: ' + businessName + '\nEmail: ' + email + '\nPhone: ' + (phone || '(not provided)') + '\n' +
+        'Preferred contact: ' + contactPref + '\n\nAbout my biggest time drain:\n' + (message || '(not provided)') + '\n\n' +
+        'SMS Consent: ' + smsConsent + '\nEmail Consent: ' + emailConsent
       );
-      window.location.href = `mailto:results@methodly.me?subject=${subject}&body=${body}`;
-      status.innerHTML = `<div class="cta-success">✓ Opening your email app...</div>`;
-      btn.textContent = 'Opening email ✓';
+      window.location.href = 'mailto:results@methodly.me?subject=' + subject + '&body=' + body;
+      status.innerHTML = '<div class="cta-success">✓ Opening your email app...</div>';
+    })
+    .finally(() => {
       setTimeout(() => { btn.disabled = false; btn.textContent = 'Book My Free Evaluation →'; }, 4000);
-    }
+    });
+
     return false;
   };
 </script>
