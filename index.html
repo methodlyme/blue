@@ -1130,6 +1130,15 @@
     body { cursor: auto; }
     .cursor, .cursor-ring { display: none; }
   }
+
+/* ─── consent + notes (added) ─── */
+.cta-pref-label { text-align: center; }
+.cta-note { font-size: 13px; color: var(--muted, #9aa3b2); line-height: 1.5; margin: -6px 0 4px; }
+.cta-consent { display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; background: rgba(255,255,255,0.02); margin-top: 4px; }
+.cta-consent-box { flex: 0 0 auto; width: 22px; height: 22px; margin-top: 2px; accent-color: var(--gold2, #d4af5a); cursor: pointer; }
+.cta-consent-label { font-size: 14px; line-height: 1.6; color: var(--muted, #b8c0cc); cursor: pointer; }
+.cta-consent-label a { color: var(--gold2, #d4af5a); text-decoration: underline; }
+.cta-consent-label a:hover { opacity: 0.85; }
 </style>
 </head>
 <body>
@@ -1394,8 +1403,8 @@
         <div class="tool-pill">HubSpot</div>
         <div class="tool-pill">Zapier</div>
         <div class="tool-pill">Make.com</div>
-        <div class="tool-pill">Claude</div>
-        <div class="tool-pill">ChatGPT</div>
+        <div class="tool-pill">Salesforce</div>
+        <div class="tool-pill">Zoho</div>
         <div class="tool-pill">Notion</div>
         <div class="tool-pill">QuickBooks</div>
         <div class="tool-pill">Canva</div>
@@ -1476,11 +1485,12 @@
     <h2 class="section-title">Ready to get your<br><em>time back?</em></h2>
     <p class="section-sub">Book a free 45-minute evaluation. No pitch, no pressure, just a clear picture of what's possible for your business.</p>
     <form class="cta-form" id="leadForm" onsubmit="return submitLead(event)">
-      <input type="text" name="name" class="cta-input" placeholder="Your name" required>
+      <input type="text" name="name" class="cta-input" placeholder="Your full name *" required>
       <div class="cta-row">
-        <input type="email" name="email" class="cta-input" placeholder="Email address" required>
-        <input type="tel" name="phone" class="cta-input" placeholder="Phone number" required>
+        <input type="email" name="email" class="cta-input" placeholder="Email address *" required>
+        <input type="tel" name="phone" class="cta-input" placeholder="Phone number (optional)">
       </div>
+      <p class="cta-note">Phone is optional. If provided, we may use your number for scheduling confirmations and inquiry follow-up only. We will only send text messages if you explicitly consent below.</p>
       <div>
         <span class="cta-pref-label">Preferred contact method</span>
         <div class="cta-radio-group">
@@ -1500,7 +1510,10 @@
       </div>
       <textarea name="message" class="cta-textarea" placeholder="What's the #1 task eating up your time right now? (optional)"></textarea>
       <button type="submit" class="cta-submit" id="submitBtn">Book My Free Evaluation →</button>
-      <p class="cta-legal">By submitting, you agree to our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>. We'll never share your information.</p>
+      <div class="cta-consent">
+        <input type="checkbox" id="consentCheckbox" name="consent" class="cta-consent-box" required>
+        <label for="consentCheckbox" class="cta-consent-label">I agree to receive texts and emails from Methodly regarding my inquiry, scheduling, services, and follow-up. Msg &amp; data rates may apply. Reply STOP to opt out or HELP for help. Email unsubscribe available anytime. Consent is not a condition of purchase. View our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.</label>
+      </div>
       <div id="formStatus"></div>
     </form>
     <div class="cta-contact-info">
@@ -1574,10 +1587,19 @@
   // Set window.ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/...' to enable webhook posting.
   window.submitLead = function(event) {
     event.preventDefault();
+      if (!document.getElementById('consentCheckbox').checked) {
+        var st = document.getElementById('formStatus');
+        if (st) { st.innerHTML = '<div class="cta-error">Please agree to the consent terms to continue.</div>'; }
+        return false;
+      }
     const form = event.target;
     const btn = document.getElementById('submitBtn');
     const status = document.getElementById('formStatus');
     const data = {
+        consent: document.getElementById('consentCheckbox').checked,
+        consent_language: 'I agree to receive texts and emails from Methodly regarding my inquiry, scheduling, services, and follow-up. Msg & data rates may apply. Reply STOP to opt out or HELP for help. Email unsubscribe available anytime. Consent is not a condition of purchase.',
+        page_url: window.location.href,
+        user_agent: navigator.userAgent,
       name: form.name.value.trim(),
       email: form.email.value.trim(),
       phone: form.phone.value.trim(),
